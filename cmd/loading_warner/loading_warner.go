@@ -33,7 +33,6 @@ func main() {
 		if processEnded {
 			break
 		}
-		processEnded = true
 		processList, err := ps.Processes()
 		if err != nil {
 			fmt.Print("\n\nFatal with getting process names. This program is not operated in current version of Windows.")
@@ -41,6 +40,7 @@ func main() {
 				time.Sleep(time.Duration(1<<63 - 1))
 			}
 		}
+		processEnded = true
 		for _, val := range processList {
 			if val.Executable() == "userinit.exe" {
 				processEnded = false
